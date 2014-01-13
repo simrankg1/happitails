@@ -90,14 +90,14 @@ while choice != 'q'
 		puts "Animal name: "
 		name_of_animal= gets.chomp
 		puts "Animal gender: "
-		gender= gets.chomp
+		animal_gender= gets.chomp
 		puts "Animal species: "
-		species= gets.chomp
+		animal_species= gets.chomp
 		puts "Animal age: "
-		age= gets.chomp.to_i
+		animal_age= gets.chomp.to_i
 		puts "Number of animal toys: "
-		toys= gets.chomp.to_i
-		new_animal= Animals.new(name_of_animal, gender, species, age, toys)
+		animal_toys= gets.chomp.to_i
+		new_animal = Animals.new(name_of_animal, animal_age, animal_gender, animal_species, animal_toys)
 		happitails.animals << new_animal
 		
 		puts "We've entered in #{name_of_animal}'s information, let's get the client in our system now."
@@ -109,7 +109,7 @@ while choice != 'q'
 		client_chldren= gets.chomp.to_i
 		puts "Number of pets, including #{name_of_animal}: "
 		client_pets= gets.chomp.to_i
-		new_client = Clients.new(name_client, client_age, client_chldren, client_pets)
+		new_client = Clients.new(name_client, client_chldren, client_age,  client_pets)
 
 		happitails.clients.push(new_client)
 
