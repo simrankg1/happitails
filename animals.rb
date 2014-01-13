@@ -6,6 +6,6 @@ class Animals
 		@gender= gender
 		@species= species
 		@toys= toys
-		@home= home
+	
 	end
 end
