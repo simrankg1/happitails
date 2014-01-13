@@ -38,9 +38,9 @@ while choice != 'q'
 		print "species:"; species= gets.chomp
 		print "age:"; age= gets.chomp.to_i
 		print "toys:"; toys= gets.chomp
-		print "home:"; home= gets.chomp
+		
 
-		happitails.animals << Animals.new(name, gender, species, age, toys, home)
+		happitails.animals << Animals.new(name, gender, species, age, toys)
 		message += "Added animal #{name} the #{species}!"
 
 	when "4"
@@ -73,7 +73,7 @@ while choice != 'q'
 				message += "#{chosen_name} has officially adopted #{selected_animal}!"
 			end
 		else
-			puts "I'm sorry, we don't have #{chosen_name} in our system."
+			puts "I'm sorry, we don't have #{chosen_name} in our system. Let me create a new account for your client."
 			print "Client's name: #{chosen_name}\n"
 			print "Please enter #{chosen_name}'s age: "
 			age= gets.chomp.to_i
@@ -86,8 +86,35 @@ while choice != 'q'
 		end
 
 	when "6"
-		puts "Which client's pet would you like to adopt?"
+		puts "Please enter the relevant information for the new addition to the Happy Tails Shelter!"
+		puts "Animal name: "
+		name_of_animal= gets.chomp
+		puts "Animal gender: "
+		gender= gets.chomp
+		puts "Animal species: "
+		species= gets.chomp
+		puts "Animal age: "
+		age= gets.chomp.to_i
+		puts "Number of animal toys: "
+		toys= gets.chomp.to_i
+		new_animal= Animals.new(name_of_animal, gender, species, age, toys)
+		happitails.animals << new_animal
+		
+		puts "We've entered in #{name_of_animal}'s information, let's get the client in our system now."
+		puts "Client's name: "
+		name_client= gets.chomp
+		puts "Client's age: "
+		client_age= gets.chomp.to_i
+		puts "Number of children: "
+		client_chldren= gets.chomp.to_i
+		puts "Number of pets, including #{name_of_animal}: "
+		client_pets= gets.chomp.to_i
+		new_client = Clients.new(name_client, client_age, client_chldren, client_pets)
 
+		happitails.clients.push(new_client)
+
+		happitails.clients.select {|x| x.name = name_client}[0].put_up 
+		message += "#{name_client} has been added to our database.\nWe're so excited for our new family member, #{name_of_animal} at Happy Tails!"
 
 
 	else
@@ -98,26 +125,6 @@ while choice != 'q'
 end
 
 
-
-#happitails.clients.select{|client| client.name = name}[0].pets << animal_name
-
-
-
-#selected_animal= Shelter.animals.select {|animal| animals.name == animal}
-
-		#if Shelter.animals.name.include?(animal_name)
-		#delete @animal
-			#Shelter.animals.delete(animals)
-		#prompt user to choose a client 
-		#match user input to client array
-		#if it doesnt match, say 'sorry this client does not exist'
-		#if it matches, add 1 to client pets
-		# match response to shelter.animals[] or msg 'sorry invalid'
-		# prompt to select @client from shelter.clients[]
-		# match response to shelter.clients[] or msg 'sorry invalid'
-		# remove @animal from shelter.animals: shelter.animals - 1
-		# add @client.pets += 1
-		# msg added {animal} to {client}
 
 
 

@@ -1,6 +1,6 @@
 class Animals
 
-	def initialize(name, age, gender, species, toys, home)
+	def initialize(name, age, gender, species, toys)
 		@name= name
 		@age= age
 		@gender= gender
