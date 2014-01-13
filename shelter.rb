@@ -32,7 +32,13 @@ class Shelter
 
 	def client_names
 		client_names= []
-		@client.each {|x| client_names << x.name}
+		@clients.each {|x| client_names << x.name}
 		return client_names
+	end
+
+	def animal_names
+		animal_names= []
+		@animals.each {|x| animal_names << x.name}
+		return animal_names
 	end
 end

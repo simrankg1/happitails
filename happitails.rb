@@ -55,20 +55,23 @@ while choice != 'q'
 
 	when "5"
 		# prompt to select @animal from shelter.animals[]
-		
+		puts "Please select a client for the animal: "
+		chosen_name= gets.chomp
 		# match animal to input
 		if happitails.client_names.include?(chosen_name)
 			puts "I see your client #{chosen_name} in our system."
 			puts "What animal would #{chosen_name} like to adopt?"
 			animal_name= gets.chomp
 
-			selected_animal= happitails.animals.each {|x| puts x.name if x.name == animal_name}
-			happitails.animals.delete_if { |x| x.name == selected_animal}
+			if animal_name != happitails.animal_names 
+				puts "Sorry, we don't have #{animal_name} in our system. Please try again!"
 
-			happitails.clients do |x| 
-				x.pets += 1
+			else
+				happitails.animals.delete_if {|x| x.name == animal_name}	#delete @animal from shelter
+				happitails.clients.select {|x| x.name = chosen_name}[0].adopt 	#add pet to @client
+
+				message += "#{chosen_name} has officially adopted #{selected_animal}!"
 			end
-
 		else
 			puts "I'm sorry, we don't have #{chosen_name} in our system."
 			print "Client's name: #{chosen_name}\n"
@@ -78,7 +81,7 @@ while choice != 'q'
 			children= gets.chomp.to_i
 			print "#{chosen_name}'s number of pets: "
 			pets= gets.chomp.to_i 
-			happitails.clients << Client.new(name, age, children, pets,)
+			happitails.clients << Clients.new(name, age, children, pets,)
 		
 		end
 
