@@ -1,7 +1,7 @@
 class Clients
 	
 	attr_accessor :name, :children, :age, :pets
-	def initialize(name, children, age, pets)
+	def initialize(name, children, age, pets= [])
 		@name= name
 		@children= children
 		@age= age
@@ -19,8 +19,3 @@ class Clients
 
 
 end
-
-sarah= Clients.new('Sarah', 12, 25, 6)
-puts sarah.age
-puts sarah.adopt
-puts sarah.put_up

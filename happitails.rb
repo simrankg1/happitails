@@ -4,9 +4,6 @@ require './clients.rb'
 
 happitails = Shelter.new("Happi Tails Shelter")
 
-
-
-
 def menu message
 
 	puts "#{message} \n" unless message.empty? 
@@ -58,26 +55,28 @@ while choice != 'q'
 
 	when "5"
 		# prompt to select @animal from shelter.animals[]
-		puts "Choose a client for your animal"
-		name= gets.chomp
+		
 		# match animal to input
-		if happitails.client_names.include?(name)
-			puts "I see your client #{name} in our system."
-			puts "What animal would #{name} like to adopt?"
+		if happitails.client_names.include?(chosen_name)
+			puts "I see your client #{chosen_name} in our system."
+			puts "What animal would #{chosen_name} like to adopt?"
 			animal_name= gets.chomp
-			happitails.animals.each {|x| puts x.name if x.name == animal_name}
+
+			selected_animal= happitails.animals.each {|x| puts x.name if x.name == animal_name}
+			happitails.animals.delete_if { |x| x.name == selected_animal}
+
 			happitails.clients do |x| 
-				x.adopt
+				x.pets += 1
 			end
 
 		else
-			puts "I'm sorry, we don't have #{name} in our system."
-			print "Client's name: #{name}\n"
-			print "Please enter #{name}'s age: "
+			puts "I'm sorry, we don't have #{chosen_name} in our system."
+			print "Client's name: #{chosen_name}\n"
+			print "Please enter #{chosen_name}'s age: "
 			age= gets.chomp.to_i
-			print "#{name}'s number of children: "
+			print "#{chosen_name}'s number of children: "
 			children= gets.chomp.to_i
-			print "#{name}'s number of pets: "
+			print "#{chosen_name}'s number of pets: "
 			pets= gets.chomp.to_i 
 			happitails.clients << Client.new(name, age, children, pets,)
 		

@@ -8,18 +8,19 @@ class Shelter
 		@animals= animals
 	end
 
-	def display_clients
-		@clients.each do |x|
-			puts x.name
-	end
+	# def display_clients
+	# 	@clients.each do |x|
+	# 		puts x.name
+	# end
 
-	def display_animals
-		@animals.each do |x|
-			puts x.name
-	end
+	# def display_animals
+	# 	@animals.each do |x|
+	# 		puts x.name
+	# end
 
 	def adopt_out_animal(pet)
 		@animals.delete(pet)
+	end
 
 	def take_in_animal(animal)
 		@animals << animal
@@ -34,5 +35,4 @@ class Shelter
 		@client.each {|x| client_names << x.name}
 		return client_names
 	end
-
 end
